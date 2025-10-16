@@ -41,11 +41,11 @@ export default async function Page({
   postsWithScore.sort((a, b) => b.score - a.score);
 
   return (
-    <div className="container p-4">
-      <h1 className="text-4xl text-orange-600 font-bold text-center pt-4">
+    <div className="container">
+      <h1 className="text-4xl text-orange-600 font-bold text-center pt-8">
         HN Scout - News
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 p-4 px-8">
         {postsWithScore.map((post) => (
           <Link
             href={`/item/${post.id}`}
