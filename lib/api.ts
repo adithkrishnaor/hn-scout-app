@@ -1,4 +1,6 @@
-export async function getPosts(page:number = 0) {
+import { HNPostsResponse, HNPostDetail } from './types';
+
+export async function getPosts(page:number = 0): Promise<HNPostsResponse | null> {
     try{
         const res = await fetch('http://hn.algolia.com/api/v1/search?tags=front_page');
         return await res.json();
@@ -10,7 +12,7 @@ export async function getPosts(page:number = 0) {
 }
 
 
-export async function getPostById(id:string) {
+export async function getPostById(id:string): Promise<HNPostDetail | null> {
     try{
         const res = await fetch(`http://hn.algolia.com/api/v1/items/${id}`);
         return await res.json();

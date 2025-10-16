@@ -1,4 +1,5 @@
 import { getPostById } from "@/lib/api";
+import { HNComment } from "@/lib/types";
 import { ExternalLink, MessageCircle, TrendingUp, User } from "lucide-react";
 import Link from "next/link";
 
@@ -6,8 +7,8 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   const { id } = params;
   const post = await getPostById(id);
   return {
-    title: `${post.title} - HN Scout`,
-    description: post.title,
+    title: post ? `${post.title} - HN Scout` : "Post not found - HN Scout",
+    description: post?.title || "Post not found",
   };
 }
 
@@ -102,7 +103,7 @@ export default async function PostDetailPage({
               Latest Comments
             </h2>
             <div className="space-y-4">
-              {comments.map((comment: any) => (
+              {comments.map((comment: HNComment) => (
                 <div
                   key={comment.id}
                   className="bg-gray-50 rounded-lg p-4 border"

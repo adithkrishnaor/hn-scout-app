@@ -1,5 +1,5 @@
 import { getPosts } from "@/lib/api";
-import { Post } from "@/lib/types";
+import { Post, HNPostHit } from "@/lib/types";
 import Link from "next/link";
 import { MessageCircle, Calendar } from "lucide-react";
 
@@ -22,7 +22,7 @@ export default async function Page({
   const { page } = await params;
   const currentPage = Number(page ?? 0);
   const data = await getPosts(currentPage);
-  const posts: Post[] = (data?.hits ?? []).map((h: any) => ({
+  const posts: Post[] = (data?.hits ?? []).map((h: HNPostHit) => ({
     id: String(h.objectID ?? h.id ?? ""),
     created_at: h.created_at,
     author: h.author,
