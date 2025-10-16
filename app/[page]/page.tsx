@@ -45,7 +45,7 @@ export default async function Page({
       <h1 className="text-4xl text-orange-600 font-bold text-center pt-4">
         HN Scout - News
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 p-4">
         {postsWithScore.map((post) => (
           <Link
             href={`/item/${post.id}`}
