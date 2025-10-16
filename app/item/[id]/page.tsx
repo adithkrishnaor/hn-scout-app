@@ -3,8 +3,12 @@ import { HNComment } from "@/lib/types";
 import { ExternalLink, MessageCircle, TrendingUp, User } from "lucide-react";
 import Link from "next/link";
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const { id } = params;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const post = await getPostById(id);
   return {
     title: post ? `${post.title} - HN Scout` : "Post not found - HN Scout",
@@ -15,9 +19,9 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 export default async function PostDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const { id } = params;
+  const { id } = await params;
   const post = await getPostById(id);
   if (!post) {
     return (
